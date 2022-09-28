@@ -4,7 +4,7 @@ author: Liza Wood
 date: "`r Sys.Date()`"
 
 github-repo: d-rug/realworld_functions_iteration
-url: "https://github.com/d-rug/realworld_functions_iteration"
+url: "https://d-rug.github.io/realworld_functions_iteration"
 
 site: "bookdown::bookdown_site"
 knit: "bookdown::render_book"
