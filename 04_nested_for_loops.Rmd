@@ -1,5 +1,6 @@
 # Nested for loops? {-}
 
+We want to loop through not just the week, but also the year. We can apply our same knowledge as before: 
 ```{r, echo = F, warning = F, message = F}
 library(lubridate)
 process_patents <- function(filepath){
@@ -10,7 +11,7 @@ process_patents <- function(filepath){
 }
 ```
 
-```{r}
+```{r, warning = F, message = F}
 patents <- data.frame()
 for(i in 1977:1978){
   for(j in 1:52){

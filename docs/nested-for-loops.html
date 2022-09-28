@@ -167,6 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="nested-for-loops" class="section level1 unnumbered hasAnchor">
 <h1>Nested for loops?<a href="nested-for-loops.html#nested-for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We want to loop through not just the week, but also the year. We can apply our same knowledge as before:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="nested-for-loops.html#cb23-1" aria-hidden="true" tabindex="-1"></a>patents <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
 <span id="cb23-2"><a href="nested-for-loops.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1977</span><span class="sc">:</span><span class="dv">1978</span>){</span>
 <span id="cb23-3"><a href="nested-for-loops.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">52</span>){</span>
@@ -174,11 +175,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb23-5"><a href="nested-for-loops.html#cb23-5" aria-hidden="true" tabindex="-1"></a>    patents <span class="ot">&lt;-</span> <span class="fu">rbind</span>(patents, df)</span>
 <span id="cb23-6"><a href="nested-for-loops.html#cb23-6" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb23-7"><a href="nested-for-loops.html#cb23-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Warning: 1 failed to parse.
-
-## Warning: 1 failed to parse.
-
-## Warning: 1 failed to parse.</code></pre>
 
 </div>
             </section>
