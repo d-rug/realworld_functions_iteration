@@ -47,7 +47,7 @@ summary(patents)
 ```
 Something's off here -- we get an output but it is small and when we look at the issue dates we see all the last week of December. So we actually only have the last week worth of data. This is similar to what happened when we didn't return the dataframe in the function -- even though the loop runs through each week, it overwrites that output each time with the following week until the final product is only the last iteration. So one more step helps us get past this, which is to create an empty data frame outside of the loop, then rbind to that empty dataframe over each iteration (binding helps us grow that data frame, rather than overwrite it).
 
-```{r}
+```{r, warning=F}
 patents <- data.frame()
 for(i in 1:52){
     df <- process_patents(paste0("~/Box/d-rug/data/uspto_1977_", i, ".csv"))

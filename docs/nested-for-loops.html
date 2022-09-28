@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Real-world function writing</title>
-  <meta name="description" content="Page not found | Real-world function writing" />
+  <title>Nested for loops? | Real-world function writing</title>
+  <meta name="description" content="Nested for loops? | Real-world function writing" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Real-world function writing" />
+  <meta property="og:title" content="Nested for loops? | Real-world function writing" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="d-rug/realworld_functions_iteration" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Real-world function writing" />
+  <meta name="twitter:title" content="Nested for loops? | Real-world function writing" />
   
   
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="iterating-with-for-loops.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -165,18 +165,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="nested-for-loops" class="section level1 unnumbered hasAnchor">
+<h1>Nested for loops?<a href="nested-for-loops.html#nested-for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="nested-for-loops.html#cb23-1" aria-hidden="true" tabindex="-1"></a>patents <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb23-2"><a href="nested-for-loops.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1977</span><span class="sc">:</span><span class="dv">1978</span>){</span>
+<span id="cb23-3"><a href="nested-for-loops.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">52</span>){</span>
+<span id="cb23-4"><a href="nested-for-loops.html#cb23-4" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="fu">paste0</span>(<span class="st">&quot;~/Box/d-rug/data/uspto_&quot;</span>,i, <span class="st">&quot;_&quot;</span>, j, <span class="st">&quot;.csv&quot;</span>))</span>
+<span id="cb23-5"><a href="nested-for-loops.html#cb23-5" aria-hidden="true" tabindex="-1"></a>    patents <span class="ot">&lt;-</span> <span class="fu">rbind</span>(patents, df)</span>
+<span id="cb23-6"><a href="nested-for-loops.html#cb23-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-7"><a href="nested-for-loops.html#cb23-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Warning: 1 failed to parse.
+
+## Warning: 1 failed to parse.
+
+## Warning: 1 failed to parse.</code></pre>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
+<a href="iterating-with-for-loops.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -198,7 +208,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/d-rug/realworld_functions_iteratio/edit/master/%s",
+"link": "https://github.com/d-rug/realworld_functions_iteratio/edit/master/04_nested_for_loops.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -206,7 +216,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/d-rug/realworld_functions_iteratio/blob/master/%s",
+"link": "https://github.com/d-rug/realworld_functions_iteratio/blob/master/04_nested_for_loops.Rmd",
 "text": null
 },
 "download": null,

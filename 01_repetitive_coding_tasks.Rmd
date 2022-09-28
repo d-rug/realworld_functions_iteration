@@ -9,7 +9,7 @@ list.files("~/Box/d-rug/data/")
 
 What would this look like if I were to go through each files one by one...
 
-```{r, warning = F}
+```{r, warning = F, message = F}
 # Load in that lubridate package first
 library(lubridate)
 patent77_1 <- read.csv("~/Box/d-rug/data/uspto_1977_1.csv")
@@ -27,6 +27,7 @@ patent77_3$Issue_Date <- ymd(as.character(patent77_3$Issue_Date))
 patent77_4 <- read.csv("~/Box/d-rug/data/uspto_1977_4.csv")
 patent77_4$App_Date <- ymd(as.character(patent77_4$App_Date))
 patent77_4$Issue_Date <- ymd(as.character(patent77_4$Issue_Date))
+# and so on ...
 ```
 
 Each file will look something like this:

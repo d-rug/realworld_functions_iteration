@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="function-writing.html"/>
-
+<link rel="next" href="nested-for-loops.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -142,6 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="repetitive-coding-tasks.html#repetitive-coding-tasks" id="toc-repetitive-coding-tasks">Repetitive coding tasks<span></span></a></li>
 <li><a href="function-writing.html#function-writing" id="toc-function-writing">Function writing<span></span></a></li>
 <li><a href="iterating-with-for-loops.html#iterating-with-for-loops" id="toc-iterating-with-for-loops">Iterating with for loops<span></span></a></li>
+<li><a href="nested-for-loops.html#nested-for-loops" id="toc-nested-for-loops">Nested for loops?<span></span></a></li>
 <li class="divider"></li>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
   <img alt="CC BY-SA 4.0" src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" style="float: right; padding-right: 10px;" />
@@ -167,17 +168,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="iterating-with-for-loops" class="section level1 unnumbered hasAnchor">
 <h1>Iterating with for loops<a href="iterating-with-for-loops.html#iterating-with-for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>There are lots of ways to iterate: apply functions, map function, and for loops are among the most popular. We’re going to use for loops here because I think is best displays the logic of iteration. So, what we’re trying to do is NOT this:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="iterating-with-for-loops.html#cb17-1" aria-hidden="true" tabindex="-1"></a>patent77_1 <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="at">filepath =</span> <span class="st">&quot;~/Box/d-rug/data/uspto_1977_1.csv&quot;</span>)</span>
-<span id="cb17-2"><a href="iterating-with-for-loops.html#cb17-2" aria-hidden="true" tabindex="-1"></a>patent77_2 <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="at">filepath =</span> <span class="st">&quot;~/Box/d-rug/data/uspto_1977_2.csv&quot;</span>)</span>
-<span id="cb17-3"><a href="iterating-with-for-loops.html#cb17-3" aria-hidden="true" tabindex="-1"></a>patent77_3 <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="at">filepath =</span> <span class="st">&quot;~/Box/d-rug/data/uspto_1977_3.csv&quot;</span>)</span>
-<span id="cb17-4"><a href="iterating-with-for-loops.html#cb17-4" aria-hidden="true" tabindex="-1"></a>patent77_4 <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="at">filepath =</span> <span class="st">&quot;~/Box/d-rug/data/uspto_1977_4.csv&quot;</span>)</span>
-<span id="cb17-5"><a href="iterating-with-for-loops.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># And so on...</span></span>
-<span id="cb17-6"><a href="iterating-with-for-loops.html#cb17-6" aria-hidden="true" tabindex="-1"></a>patents <span class="ot">&lt;-</span> <span class="fu">rbind</span>(patent77_1, patent77_2, patent77_3, patent77_4)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="iterating-with-for-loops.html#cb14-1" aria-hidden="true" tabindex="-1"></a>patent77_1 <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="at">filepath =</span> <span class="st">&quot;~/Box/d-rug/data/uspto_1977_1.csv&quot;</span>)</span>
+<span id="cb14-2"><a href="iterating-with-for-loops.html#cb14-2" aria-hidden="true" tabindex="-1"></a>patent77_2 <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="at">filepath =</span> <span class="st">&quot;~/Box/d-rug/data/uspto_1977_2.csv&quot;</span>)</span>
+<span id="cb14-3"><a href="iterating-with-for-loops.html#cb14-3" aria-hidden="true" tabindex="-1"></a>patent77_3 <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="at">filepath =</span> <span class="st">&quot;~/Box/d-rug/data/uspto_1977_3.csv&quot;</span>)</span>
+<span id="cb14-4"><a href="iterating-with-for-loops.html#cb14-4" aria-hidden="true" tabindex="-1"></a>patent77_4 <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="at">filepath =</span> <span class="st">&quot;~/Box/d-rug/data/uspto_1977_4.csv&quot;</span>)</span>
+<span id="cb14-5"><a href="iterating-with-for-loops.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># And so on...</span></span>
+<span id="cb14-6"><a href="iterating-with-for-loops.html#cb14-6" aria-hidden="true" tabindex="-1"></a>patents <span class="ot">&lt;-</span> <span class="fu">rbind</span>(patent77_1, patent77_2, patent77_3, patent77_4)</span></code></pre></div>
 <p>So again, what is it here that changes every time? Only the number. This makes it an easy candidate for looping through, were each loop inputs a new number. Let’s first do this with only the year 1977. There are 52 weeks so we want to run the process_patents function on all 52, then bind them together.</p>
 <p>The key here is understanding the use of the index, i, and how it relates to the function you want to run. In this case, we want to run through the loop 52 times, each time coutning up from 1 to 52. So here is the basic logic of the loop.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="iterating-with-for-loops.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">52</span>){</span>
-<span id="cb18-2"><a href="iterating-with-for-loops.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb18-3"><a href="iterating-with-for-loops.html#cb18-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="iterating-with-for-loops.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">52</span>){</span>
+<span id="cb15-2"><a href="iterating-with-for-loops.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb15-3"><a href="iterating-with-for-loops.html#cb15-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
@@ -231,13 +232,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 51
 ## [1] 52</code></pre>
 <p>Now that we got that, we need to understand how to incorporate that number into the filepath, so that the filepath changes each time. This only takes understanding the <code>paste0()</code> function in base R, which pastes together strings. For example we could paste together the different parts of the filepath, where different parts are separated by commas.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="iterating-with-for-loops.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;~/Box/d-rug/data/uspto_1977_&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="iterating-with-for-loops.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;~/Box/d-rug/data/uspto_1977_&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;~/Box/d-rug/data/uspto_1977_1.csv&quot;</code></pre>
 <p>We can then insert this logic into our for loop’s filepath, but instead of pasting in the number itself, we paste in the value of i, because that value of i will change with every loop. Let’s give it a try</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="iterating-with-for-loops.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">52</span>){</span>
-<span id="cb22-2"><a href="iterating-with-for-loops.html#cb22-2" aria-hidden="true" tabindex="-1"></a>    patents <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="fu">paste0</span>(<span class="st">&quot;~/Box/d-rug/data/uspto_1977_&quot;</span>, i, <span class="st">&quot;.csv&quot;</span>))</span>
-<span id="cb22-3"><a href="iterating-with-for-loops.html#cb22-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb22-4"><a href="iterating-with-for-loops.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(patents)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="iterating-with-for-loops.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">52</span>){</span>
+<span id="cb19-2"><a href="iterating-with-for-loops.html#cb19-2" aria-hidden="true" tabindex="-1"></a>    patents <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="fu">paste0</span>(<span class="st">&quot;~/Box/d-rug/data/uspto_1977_&quot;</span>, i, <span class="st">&quot;.csv&quot;</span>))</span>
+<span id="cb19-3"><a href="iterating-with-for-loops.html#cb19-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-4"><a href="iterating-with-for-loops.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(patents)</span></code></pre></div>
 <pre><code>##      WKU               Title              App_Date         
 ##  Length:1323        Length:1323        Min.   :1954-01-27  
 ##  Class :character   Class :character   1st Qu.:1976-02-06  
@@ -260,13 +261,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                                       
 ## </code></pre>
 <p>Something’s off here – we get an output but it is small and when we look at the issue dates we see all the last week of December. So we actually only have the last week worth of data. This is similar to what happened when we didn’t return the dataframe in the function – even though the loop runs through each week, it overwrites that output each time with the following week until the final product is only the last iteration. So one more step helps us get past this, which is to create an empty data frame outside of the loop, then rbind to that empty dataframe over each iteration (binding helps us grow that data frame, rather than overwrite it).</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="iterating-with-for-loops.html#cb24-1" aria-hidden="true" tabindex="-1"></a>patents <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb24-2"><a href="iterating-with-for-loops.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">52</span>){</span>
-<span id="cb24-3"><a href="iterating-with-for-loops.html#cb24-3" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="fu">paste0</span>(<span class="st">&quot;~/Box/d-rug/data/uspto_1977_&quot;</span>, i, <span class="st">&quot;.csv&quot;</span>))</span>
-<span id="cb24-4"><a href="iterating-with-for-loops.html#cb24-4" aria-hidden="true" tabindex="-1"></a>    patents <span class="ot">&lt;-</span> <span class="fu">rbind</span>(patents, df)</span>
-<span id="cb24-5"><a href="iterating-with-for-loops.html#cb24-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Warning: 1 failed to parse.</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="iterating-with-for-loops.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(patents)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="iterating-with-for-loops.html#cb21-1" aria-hidden="true" tabindex="-1"></a>patents <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb21-2"><a href="iterating-with-for-loops.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">52</span>){</span>
+<span id="cb21-3"><a href="iterating-with-for-loops.html#cb21-3" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">process_patents</span>(<span class="fu">paste0</span>(<span class="st">&quot;~/Box/d-rug/data/uspto_1977_&quot;</span>, i, <span class="st">&quot;.csv&quot;</span>))</span>
+<span id="cb21-4"><a href="iterating-with-for-loops.html#cb21-4" aria-hidden="true" tabindex="-1"></a>    patents <span class="ot">&lt;-</span> <span class="fu">rbind</span>(patents, df)</span>
+<span id="cb21-5"><a href="iterating-with-for-loops.html#cb21-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-6"><a href="iterating-with-for-loops.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(patents)</span></code></pre></div>
 <pre><code>##      WKU               Title              App_Date         
 ##  Length:69825       Length:69825       Min.   :1075-03-04  
 ##  Class :character   Class :character   1st Qu.:1975-06-26  
@@ -299,8 +299,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="function-writing.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="function-writing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="nested-for-loops.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

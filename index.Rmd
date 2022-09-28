@@ -30,7 +30,7 @@ output:
 
 # Overview {-}
 
-This is a mini-lecture walking through the usefulness of function-writing and iteration using an example of reading in and writing data.
+This is a mini-lecture walking through the usefulness of function-writing and iteration using an example of reading in a large number of data files from the US Patent Office.
 
 
 

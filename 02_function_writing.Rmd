@@ -15,7 +15,7 @@ patent77_2$App_Date <- ymd(as.character(patent77_2$App_Date))
 patent77_2$Issue_Date <- ymd(as.character(patent77_2$Issue_Date))
 ```
 
-The filepath is the main thing that changes each time (and the name we assign to the output). But let's focus on the filepath for now. To start writing a function, you want to give your function a name (I'll call mine 'process_parents') and assign it using the `function()` function (trippy, I know). Inside the agruments of the function function will be the argument, which is typically the thing we named above. That is, the part of the repeated code that actually changes each time.
+The filepath is the main thing that changes each time (and the name we assign to the output). But let's focus on the filepath for now. To start writing a function, you want to give your function a name (I'll call mine 'process_patents') and assign it using the `function()` function (trippy, I know). Inside the arguments of the function function will be the argument, the thing we want to generalize, in this case, the filepath.
 
 Let's look at an example. I start by opening up the function with the curly brackets, pasting in the non-generalized code, and replacing the "repeated" thing with the argument. For now I have also changed the object name to df for simplicity.
 

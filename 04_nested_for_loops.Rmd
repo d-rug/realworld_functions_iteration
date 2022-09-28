@@ -1,0 +1,21 @@
+# Nested for loops? {-}
+
+```{r, echo = F, warning = F, message = F}
+library(lubridate)
+process_patents <- function(filepath){
+    df <- read.csv(filepath)
+    df$App_Date <- ymd(as.character(df$App_Date))
+    df$Issue_Date <- ymd(as.character(df$Issue_Date))
+    return(df)
+}
+```
+
+```{r}
+patents <- data.frame()
+for(i in 1977:1978){
+  for(j in 1:52){
+    df <- process_patents(paste0("~/Box/d-rug/data/uspto_",i, "_", j, ".csv"))
+    patents <- rbind(patents, df)
+  }
+}
+```
