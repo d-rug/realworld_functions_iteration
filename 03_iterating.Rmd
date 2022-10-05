@@ -1,0 +1,86 @@
+# Iterating {-}
+
+There are lots of ways to iterate: apply functions, map function, and for loops are among the most popular. We're going to walk through two ways: for loops, first to discuss the logic of iteration, then the apply function, for speed and smoother coding.  
+
+So, what we're trying to do is NOT this:
+
+```{r, echo = F, warning = F, message = F}
+library(lubridate)
+process_patents <- function(filepath){
+    df <- read.csv(filepath)
+    df$App_Date <- ymd(as.character(df$App_Date))
+    df$Issue_Date <- ymd(as.character(df$Issue_Date))
+    return(df)
+}
+```
+
+```{r}
+patent77_1 <- process_patents(filepath = "~/Box/d-rug/data/uspto_1977_1.csv")
+patent77_2 <- process_patents(filepath = "~/Box/d-rug/data/uspto_1977_2.csv")
+patent77_3 <- process_patents(filepath = "~/Box/d-rug/data/uspto_1977_3.csv")
+patent77_4 <- process_patents(filepath = "~/Box/d-rug/data/uspto_1977_4.csv")
+# And so on...
+patents <- rbind(patent77_1, patent77_2, patent77_3, patent77_4)
+```
+
+So again, what is it here that changes every time? The filepath. This makes it an easy candidate for looping through, were each loop inputs a new filepath.  
+
+The key here is understanding the use of the index, i, and how it relates to the function you want to run. In this case, we want to run through the loop 52 times, each time printing a new filepath. So here is the basic logic of the loop.
+
+```{r}
+for(i in list.files("~/Box/d-rug/data/", full.names = T)){
+  print(i)
+}
+```
+
+Now that we got that, we need to understand how to incorporate that filepath into the function. Because we want to fun the `process_patents()` function on each filepath, and i is the value of the filepath, this is what we want to insert. Let's give it a try
+
+```{r, warning=F}
+for(i in list.files("~/Box/d-rug/data/", full.names = T)){
+    patents <- process_patents(i)
+}
+summary(patents)
+```
+Something's off here -- we get an output but it is small and when we look at the issue dates we see all the last week of December. So we actually only have the last week worth of data. This is similar to what happened when we didn't return the dataframe in the function -- even though the loop runs through each week, it overwrites that output each time with the following week until the final product is only the last iteration. So one more step helps us get past this, which is to create an empty data frame outside of the loop, then rbind to that empty dataframe over each iteration (binding helps us grow that data frame, rather than overwrite it). I'm also going to measure how long this takes using the `Sys.
+
+```{r, warning=F}
+t1 <- Sys.time()
+patents <- data.frame()
+for(i in list.files("~/Box/d-rug/data/", full.names = T)){
+    df <- process_patents(i)
+    patents <- rbind(patents, df)
+}
+t2 <- Sys.time()
+```
+
+So what did we get?  
+```{r}
+summary(patents)
+```
+
+That's more like it! 
+
+But how long did it take?
+```{r}
+t2 - t1
+```
+
+For loops can be slow, so let's now switch this iteration to the `apply` approach. 
+
+```{r}
+t1 <- Sys.time()
+patents <- lapply(list.files("~/Box/d-rug/data/", full.names = T),
+                            process_patents)
+patent_df <- do.call("rbind", patents)
+t2 <- Sys.time()
+```
+
+We get the same output:
+```{r}
+summary(patent_df)
+```
+
+And how long did it take? Right now this seems like a marginal gain, but over time loops gets slower and slower, whereas apply functions do not, so consider this when choosing. 
+```{r}
+t2 - t1
+```

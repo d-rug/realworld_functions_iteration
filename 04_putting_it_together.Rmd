@@ -1,0 +1,34 @@
+# Putting it together {-}
+
+We've made a function, and iterated through that function. So let's go one step further and make a function with the iteration built in: 
+
+```{r, echo = F, warning = F, message = F}
+library(lubridate)
+```
+
+
+```{r}
+read_patents <- function(file_dir){
+  patents <- do.call("rbind", 
+                     lapply(list.files(file_dir, full.names = T),
+                            function(x){
+                  df <- read.csv(x)
+                  df$App_Date <- ymd(as.character(df$App_Date))
+                  df$Issue_Date <- ymd(as.character(df$Issue_Date))
+                  return(df)
+                  }))
+  return(patents)
+}
+```
+
+Now all we have to do is use this singular function with the director of all files to read in and combine the patents:  
+
+```{r}
+patents <- read_patents("~/Box/d-rug/data/")
+```
+
+```{r}
+head(patents)
+```
+
+
